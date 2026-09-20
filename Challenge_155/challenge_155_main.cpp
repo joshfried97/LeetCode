@@ -1,21 +1,28 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <unordered_map>
+#include <climits>
 
 using namespace std;
 
 class MinStack {
 public:
     MinStack() {
-        m_min_value = 0;
     }
     
     void push(int value) {
-        if (value < m_min_value)
+        if (m_stack.empty())
+        {
+            // First value in the stack therefore instantly smallest
+            m_min_value = value;
+        } else if (value < m_min_value)
         {
             // Update minimum value if this has changed
             m_min_value = value;
+        }
+        else
+        {
+            // Do nothing
         }
         
         // Push to the top of the stack
